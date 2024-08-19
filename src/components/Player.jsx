@@ -1,14 +1,22 @@
 import { useState } from "react";
 
-export function Player({ playerName, playerSymbol }) {
+export function Player({ initialName, playerSymbol }) {
   const [isEdit, setIsEdit] = useState(false);
+  const [player, setPlayer] = useState(initialName);
   function editHandler() {
-    setIsEdit(!isEdit);
+    setIsEdit((prevState) => !prevState);
   }
 
-  let playerNameEdit = <span className="player-name">{playerName}</span>;
+  function chanceHandler(event) {
+    setPlayer(event.target.value);
+  }
 
-  if (isEdit) playerNameEdit = <input type="text" required />;
+  let playerNameEdit = <span className="player-name">{player}</span>;
+
+  if (isEdit)
+    playerNameEdit = (
+      <input type="text" required value={player} onChange={chanceHandler} />
+    );
 
   return (
     <li>
