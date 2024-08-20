@@ -5,15 +5,16 @@ const initialGameBoard = [
   [null, null, null],
   [null, null, null],
 ];
-export function GameBoard() {
+export function GameBoard({ onSelectPlay, activeSymbol }) {
   const [board, setBoard] = useState(initialGameBoard);
 
   function handlePlay(rowIndex, colIndex) {
     setBoard((prev) => {
       const play = [...prev.map((item) => [...item])];
-      play[rowIndex][colIndex] = "X";
+      play[rowIndex][colIndex] = activeSymbol;
       return play;
     });
+    onSelectPlay();
   }
   return (
     <ol id="game-board">
