@@ -19,7 +19,7 @@ export function GameBoard({ onSelectPlay, turns }) {
           <ol>
             {item.map((playerSymbol, indexCol) => (
               <li key={indexCol}>
-                <button onClick={() => onSelectPlay(indexRow, indexCol)}>
+                <button onClick={() => onSelectPlay(indexRow, indexCol)} disabled={playerSymbol}>
                   {playerSymbol}
                 </button>
               </li>
