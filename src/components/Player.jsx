@@ -1,10 +1,11 @@
 import { useState } from "react";
 
-export function Player({ initialName, playerSymbol, isActive }) {
+export function Player({ initialName, playerSymbol, isActive, onChangeName }) {
   const [isEdit, setIsEdit] = useState(false);
   const [player, setPlayer] = useState(initialName);
   function editHandler() {
     setIsEdit((prevState) => !prevState);
+    if (isEdit) onChangeName(playerSymbol, player);
   }
 
   function chanceHandler(event) {
